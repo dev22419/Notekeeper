@@ -18,6 +18,7 @@ import { useUI } from "../../store/ui";
 import type { QuickView } from "../../types";
 import { FolderTree } from "./FolderTree";
 import { SearchResults } from "./SearchResults";
+import { SyncStatus } from "./SyncStatus";
 
 export const SEARCH_INPUT_ID = "global-search";
 
@@ -169,6 +170,7 @@ export function Sidebar() {
           >
             <RiSettings3Line size={16} className="text-muted" /> Settings
           </button>
+          {__SYNC_ENABLED__ && <SyncStatus />}
           <IconButton
             aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
             title={theme === "dark" ? "Light theme" : "Dark theme"}

@@ -7,25 +7,15 @@ import {
   RiSunLine,
   RiUploadLine,
 } from "@remixicon/react";
-import { useRef, useState, type ReactNode } from "react";
+import { useRef, useState } from "react";
 import { createSeed, DEFAULT_FOLDER_ID, type SeedData } from "../../data/seed";
 import { cn } from "../../lib/util";
 import { useData } from "../../store/data";
 import { useUI, type ThemePref } from "../../store/ui";
 import { IconButton } from "../ui/Buttons";
 import { Modal } from "../ui/Modal";
-
-function Row({ title, detail, action }: { title: string; detail: string; action: ReactNode }) {
-  return (
-    <div className="flex items-center justify-between gap-4 py-3">
-      <div>
-        <p className="text-[13.5px] font-medium text-ink">{title}</p>
-        <p className="text-[12px] text-muted">{detail}</p>
-      </div>
-      {action}
-    </div>
-  );
-}
+import { AccountSection } from "./AccountSection";
+import { Row, settingsButton as btn } from "./SettingsRow";
 
 const THEMES: { id: ThemePref; label: string; icon: typeof RiSunLine }[] = [
   { id: "light", label: "Light", icon: RiSunLine },
@@ -57,9 +47,6 @@ function ThemeSwitch() {
     </div>
   );
 }
-
-const btn =
-  "inline-flex h-8 shrink-0 items-center gap-1.5 rounded-lg border border-line bg-panel px-3 text-[12.5px] font-medium text-ink-2 transition-colors hover:border-line-strong hover:bg-window";
 
 export function SettingsModal() {
   const open = useUI((s) => s.settingsOpen);
@@ -111,6 +98,7 @@ export function SettingsModal() {
         </IconButton>
       </div>
       <div className="divide-y divide-line px-5 pb-2">
+        {__SYNC_ENABLED__ && <AccountSection />}
         <Row
           title="Appearance"
           detail="System follows your device's light or dark setting."

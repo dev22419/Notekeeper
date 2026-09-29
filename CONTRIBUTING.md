@@ -30,6 +30,18 @@ npm run dev        # http://localhost:5173
 
 Notes are saved in your browser's `localStorage`. To start fresh, use **Settings → Sample data → Reset**, or clear the site data for `localhost:5173`.
 
+### Cloud sync (optional)
+
+Sync is off unless Supabase is configured, and most changes don't need it. To work on it locally you need Docker:
+
+```bash
+npx supabase start                  # local Supabase; prints its URL and keys
+cp .env.example .env.local          # then fill in API_URL and PUBLISHABLE_KEY from above
+npm run dev
+```
+
+Sign-in emails don't leave your machine: open Mailpit at http://127.0.0.1:54324 to click the link. `npx supabase stop` shuts the stack down.
+
 ## Make your change
 
 1. Create a branch from `main` with a short, descriptive name, such as `fix-folder-menu-position` or `canvas-image-paste`.
